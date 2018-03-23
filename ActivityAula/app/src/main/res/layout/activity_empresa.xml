@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.example.hansschedel.activityaula.EmpresaActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/detalhe_empresa"
+        android:src="@drawable/detalhe_empresa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
+        android:autoText="false"
+        android:text="@string/empresa_detalhes"
+        android:textColor="#D2691E"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="320dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="108dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="32dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#60000000"
+            android:padding="@dimen/padding_padrao"
+            android:text="  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et tempor dolor, a euismod tellus. Phasellus finibus quam vitae elit rutrum, eu viverra turpis elementum. Aenean scelerisque nisi nec nunc suscipit, tempus mattis dui venenatis. Integer mi risus, varius vitae felis in, dapibus imperdiet magna. Donec magna sem, blandit tincidunt lorem in, volutpat porta nisl. Curabitur interdum risus sed lacinia laoreet. Phasellus ac arcu interdum purus maximus commodo. Fusce id sollicitudin ligula.  Maecenas quis turpis id libero pretium consectetur vel non magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus quis lacus lacus. Integer convallis molestie nulla a iaculis. Integer porttitor augue vel tempor molestie. Donec erat leo, lobortis id nisl eget, rutrum pulvinar magna. Ut interdum neque et faucibus suscipit. Etiam odio lectus, varius vehicula ante vel, congue consectetur velit. In tincidunt a elit quis viverra. Sed sollicitudin elit sit amet velit mattis mattis. In ut mi vitae nisl pretium venenatis. Duis nec tincidunt tellus. Phasellus eu congue quam. Vivamus scelerisque rhoncus tincidunt. Morbi vehicula dui sed fringilla consectetur. Phasellus sodales dui libero, posuere fringilla ligula auctor id.  Vivamus turpis eros, fringilla dignissim dolor eu, porttitor condimentum nisl. Nunc hendrerit felis id ultricies venenatis. Vivamus in massa vitae risus eleifend laoreet. Ut bibendum massa ac erat sollicitudin vestibulum. Sed pellentesque pretium est eget dictum. Proin eu pharetra turpis. Sed nec quam in nisi vestibulum fermentum a vel tellus. Mauris maximus risus quis dui hendrerit, vel tempor elit lobortis. Ut nec nisi nec eros laoreet lacinia non vitae elit.  Maecenas metus tortor, finibus eget venenatis et, dignissim at nibh. Nullam tempor, nunc eu pretium sollicitudin, quam metus blandit dolor, at condimentum sem elit eget orci. Pellentesque dolor orci, ultrices in turpis posuere, ultrices dictum nisl. Nunc quis libero ac nulla venenatis interdum. Curabitur feugiat nunc eget elit rutrum condimentum. Praesent malesuada, orci quis euismod placerat, tellus libero iaculis risus, et pharetra nisi sem non tortor. Integer iaculis quam et pulvinar malesuada. Aliquam sit amet velit convallis, facilisis neque ac, auctor risus. Sed dapibus dui sit amet neque varius, non maximus odio porttitor. Nullam nec libero sed ante pellentesque convallis eu eget velit. Pellentesque vehicula augue sit amet molestie interdum. Aenean ultrices ipsum at rhoncus iaculis. Ut non lacinia mi. Phasellus vestibulum vulputate quam sed rhoncus.  Maecenas risus sapien, auctor nec feugiat sollicitudin, lobortis non ligula. Praesent aliquam lorem dolor, ut congue ligula eleifend a. Nulla vel maximus arcu. Ut a iaculis massa. Praesent sit amet velit eget lorem vestibulum dapibus non et leo. Aliquam sit amet laoreet ante. Suspendisse eget iaculis velit. Morbi semper feugiat orci eget rhoncus. Sed vestibulum bibendum urna quis varius. "
+            android:textColor="@android:color/black" />
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
