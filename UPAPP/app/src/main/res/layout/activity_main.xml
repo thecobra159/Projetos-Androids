@@ -67,9 +67,5 @@
             android:layout_centerInParent="true"
             android:visibility="invisible"
             android:indeterminate="true"/>
-        <ImageView
-            android:id="@+id/imgView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
