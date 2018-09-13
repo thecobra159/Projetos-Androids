@@ -1,5 +1,6 @@
 package com.example.cobra.upapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.SimpleMaskTextWatcher;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btnConnect = findViewById(R.id.btnConnect);
         progressBarConnect = findViewById(R.id.progressConnect);
 
-        ipMaskFormatter = new SimpleMaskFormatter("NNNN.NNNN.NNNN.NNNN");
+        ipMaskFormatter = new SimpleMaskFormatter("NNN.NNN.NNN.NNN");
         portMaskFormatter = new SimpleMaskFormatter("NNNN");
 
         ipWatcher = new SimpleMaskTextWatcher(ipServer, ipMaskFormatter);
@@ -60,6 +62,17 @@ public class MainActivity extends AppCompatActivity {
                     ipPort.add(ip);
                     ipPort.add(port);
                     (new ConnectionProgress(getApplicationContext(), progressBarConnect, (ArrayList<String>) ipPort)).execute(ipServer.getText().toString());
+                    try {
+                        if (Singleton.getInstance().getSocket() != null){
+                            Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                            startActivity(intent);
+                            //finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Servidor não conectado", Toast.LENGTH_SHORT);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
