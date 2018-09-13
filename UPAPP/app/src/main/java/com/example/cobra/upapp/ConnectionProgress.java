@@ -7,7 +7,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +29,12 @@ public class ConnectionProgress extends AsyncTask<String, Void, Boolean> {
             public void run() {
                 super.run();
                 try {
-                    Socket client = new Socket(ipPort.get(0), Integer.parseInt(ipPort.get(1)));
-                    connect = true;
+                    if (Singleton.getInstance().connect(ipPort.get(0), Integer.parseInt(ipPort.get(1))))
+                        connect = true;
+                    else
+                        connect = false;
                 } catch (IOException e) {
                     e.printStackTrace();
-                    connect = false;
                 }
             }
         }.start();
@@ -53,11 +53,9 @@ public class ConnectionProgress extends AsyncTask<String, Void, Boolean> {
         super.onPostExecute(bool);
         progressBarConnect.setVisibility(View.INVISIBLE);
 
-        if (!connect){
+        if (!connect)
             Toast.makeText(context, "Não foi possível estabelecer uma conexão!", Toast.LENGTH_SHORT).show();
-        } else {
+        else
             Toast.makeText(context, "Conexão estabelecida com sucesso!", Toast.LENGTH_SHORT).show();
-        }
-
     }
 }
