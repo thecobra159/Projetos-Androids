@@ -1,29 +1,36 @@
 package com.example.cobra.upapp;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Singleton {
-    private static Singleton ourInstance = null;
-
-    public Singleton() {
-
-    }
+    private static Singleton myInstance = null;
+    private Socket socket;
 
     public static Singleton getInstance() throws IOException {
-        if (ourInstance == null) {
-            ourInstance = new Singleton();
+        if (myInstance == null) {
+            myInstance = new Singleton();
         }
-        return ourInstance;
+        return myInstance;
     }
 
     public boolean connect(String ip, int port) {
         try {
-            Socket socket = new Socket(ip, port);
+            socket = new Socket(ip, port);
+            socket.connect(new InetSocketAddress(ip, port));
             return true;
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
     }
 }

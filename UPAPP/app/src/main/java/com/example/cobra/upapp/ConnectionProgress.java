@@ -35,6 +35,7 @@ public class ConnectionProgress extends AsyncTask<String, Void, Boolean> {
                         connect = false;
                 } catch (IOException e) {
                     e.printStackTrace();
+                    connect = false;
                 }
             }
         }.start();

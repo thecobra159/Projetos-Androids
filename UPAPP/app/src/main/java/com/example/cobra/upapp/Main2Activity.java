@@ -1,7 +1,9 @@
 package com.example.cobra.upapp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,6 +32,14 @@ public class Main2Activity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        btnUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), TakePhoto.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

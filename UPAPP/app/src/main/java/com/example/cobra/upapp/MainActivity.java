@@ -1,5 +1,7 @@
 package com.example.cobra.upapp;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btnConnect = findViewById(R.id.btnConnect);
         progressBarConnect = findViewById(R.id.progressConnect);
 
-        ipMaskFormatter = new SimpleMaskFormatter("NNNN.NNNN.NNNN.NNNN");
+        ipMaskFormatter = new SimpleMaskFormatter("NNN.NNN.NNN.NNN");
         portMaskFormatter = new SimpleMaskFormatter("NNNN");
 
         ipWatcher = new SimpleMaskTextWatcher(ipServer, ipMaskFormatter);
@@ -59,7 +61,18 @@ public class MainActivity extends AppCompatActivity {
                     ipPort = new ArrayList<>();
                     ipPort.add(ip);
                     ipPort.add(port);
-                    (new ConnectionProgress(getApplicationContext(), progressBarConnect, (ArrayList<String>) ipPort)).execute(ipServer.getText().toString());
+                    AsyncTask<String, Void, Boolean> connection = new ConnectionProgress(getApplicationContext(), progressBarConnect, (ArrayList<String>) ipPort);
+                    connection.execute(ipServer.getText().toString());
+
+                    try {
+                        if(connection.get().booleanValue()) {
+                            Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
