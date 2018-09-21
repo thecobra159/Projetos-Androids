@@ -18,7 +18,7 @@
         android:ems="10"
         android:hint="IP Server"
         android:inputType="text"
-        android:text="192.168.43.81"
+        android:text="192.168.100.28"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

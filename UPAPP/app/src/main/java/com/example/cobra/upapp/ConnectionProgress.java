@@ -28,9 +28,7 @@ public class ConnectionProgress extends AsyncTask<String, Void, Boolean> {
             if (Singleton.getInstance().connect(ipPort.get(0), Integer.parseInt(ipPort.get(1)))) {
                 Thread.sleep(2000);
                 connect = true;
-            }
-            else
-            {
+            } else {
                 connect = false;
             }
         } catch (IOException | InterruptedException e) {
@@ -54,8 +52,7 @@ public class ConnectionProgress extends AsyncTask<String, Void, Boolean> {
 
         if (!connect) {
             Toast.makeText(context, "Não foi possível estabelecer uma conexão!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Toast.makeText(context, "Conexão estabelecida com sucesso!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, Main2Activity.class);
             context.startActivity(intent);

@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ipServer = findViewById(R.id.editTextIP);
-        portServer = findViewById(R.id.editTextPort);
-        btnConnect = findViewById(R.id.btnConnect);
-        progressBarConnect = findViewById(R.id.progressConnect);
+        ipServer            = findViewById(R.id.editTextIP);
+        portServer          = findViewById(R.id.editTextPort);
+        btnConnect          = findViewById(R.id.btnConnect);
+        progressBarConnect  = findViewById(R.id.progressConnect);
 
 //        ipMaskFormatter = new SimpleMaskFormatter("NNN.NNN.NNN.NNN");
 //        portMaskFormatter = new SimpleMaskFormatter("NNNN");

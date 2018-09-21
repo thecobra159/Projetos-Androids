@@ -11,12 +11,12 @@ import android.widget.ProgressBar;
 import java.io.File;
 import java.io.IOException;
 
-public class DonwloadTask extends AsyncTask<String, Void, Bitmap> {
+public class UploadTask extends AsyncTask<String, Void, Bitmap> {
     private Context context;
     private ImageView imageView;
     private ProgressBar progressBar;
 
-    public DonwloadTask(Context context, ImageView imageView, ProgressBar progressBar) {
+    public UploadTask(Context context, ImageView imageView, ProgressBar progressBar) {
         this.context = context;
         this.imageView = imageView;
         this.progressBar = progressBar;
@@ -30,13 +30,10 @@ public class DonwloadTask extends AsyncTask<String, Void, Bitmap> {
             File file = new File(strings[0]);
             Singleton.getInstance().sendMyFileOut().writeObject(FileUtils.readFromFile(file));
 
-            Thread.sleep(100);
+            Thread.sleep(2000);
 
-            File file2 = FileUtils.createFile(context, ".jpg");
-            FileUtils.writeToFile(file2, (byte[])Singleton.getInstance().getMyFileIn().readObject());
-
-            image = BitmapFactory.decodeFile(file2.getAbsolutePath());
-        } catch (IOException | InterruptedException | ClassNotFoundException e) {
+            image = BitmapFactory.decodeFile(file.getAbsolutePath());
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
         return image;
