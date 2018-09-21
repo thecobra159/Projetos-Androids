@@ -1,10 +1,6 @@
 package com.example.cobra.upapp;
 
-import android.content.Intent;
-<<<<<<< HEAD
 import android.os.AsyncTask;
-=======
->>>>>>> 41bba0db3002e91b8b0e39897c655f6f857c0faf
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +12,6 @@ import android.widget.Toast;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.SimpleMaskTextWatcher;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
         btnConnect = findViewById(R.id.btnConnect);
         progressBarConnect = findViewById(R.id.progressConnect);
 
-        ipMaskFormatter = new SimpleMaskFormatter("NNN.NNN.NNN.NNN");
-        portMaskFormatter = new SimpleMaskFormatter("NNNN");
+//        ipMaskFormatter = new SimpleMaskFormatter("NNN.NNN.NNN.NNN");
+//        portMaskFormatter = new SimpleMaskFormatter("NNNN");
 
-        ipWatcher = new SimpleMaskTextWatcher(ipServer, ipMaskFormatter);
-        portWatcher = new SimpleMaskTextWatcher(portServer, portMaskFormatter);
+//        ipWatcher = new SimpleMaskTextWatcher(ipServer, ipMaskFormatter);
+//        portWatcher = new SimpleMaskTextWatcher(portServer, portMaskFormatter);
 
-        ipServer.addTextChangedListener(ipWatcher);
-        portServer.addTextChangedListener(portWatcher);
+//        ipServer.addTextChangedListener(ipWatcher);
+//        portServer.addTextChangedListener(portWatcher);
 
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,31 +60,9 @@ public class MainActivity extends AppCompatActivity {
                     ipPort = new ArrayList<>();
                     ipPort.add(ip);
                     ipPort.add(port);
-<<<<<<< HEAD
-                    AsyncTask<String, Void, Boolean> connection = new ConnectionProgress(getApplicationContext(), progressBarConnect, (ArrayList<String>) ipPort);
-                    connection.execute(ipServer.getText().toString());
 
-                    try {
-                        if(connection.get().booleanValue()) {
-                            Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    } catch (Exception e) {
-=======
-                    (new ConnectionProgress(getApplicationContext(), progressBarConnect, (ArrayList<String>) ipPort)).execute(ipServer.getText().toString());
-                    try {
-                        if (Singleton.getInstance().getSocket() != null){
-                            Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-                            startActivity(intent);
-                            //finish();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Servidor não conectado", Toast.LENGTH_SHORT);
-                        }
-                    } catch (IOException e) {
->>>>>>> 41bba0db3002e91b8b0e39897c655f6f857c0faf
-                        e.printStackTrace();
-                    }
+                    AsyncTask<String, Void, Boolean> connection = new ConnectionProgress(MainActivity.this, progressBarConnect, (ArrayList<String>) ipPort);
+                    connection.execute(ipServer.getText().toString(), portServer.getText().toString());
                 }
             }
         });

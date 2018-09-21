@@ -1,6 +1,6 @@
 package com.example.cobra.upapp;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionProgress extends AsyncTask<String, Void, Boolean> {
-    private Context context;
+    private MainActivity context;
     private ProgressBar progressBarConnect;
     private List<String> ipPort;
     private boolean connect = false;
 
-    public ConnectionProgress(Context context, ProgressBar progressBarConnect, ArrayList<String> ipPort) {
+    public ConnectionProgress(MainActivity context, ProgressBar progressBarConnect, ArrayList<String> ipPort) {
         this.context = context;
         this.progressBarConnect = progressBarConnect;
         this.ipPort = ipPort;
@@ -24,21 +24,19 @@ public class ConnectionProgress extends AsyncTask<String, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(String... strings) {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    if (Singleton.getInstance().connect(ipPort.get(0), Integer.parseInt(ipPort.get(1))))
-                        connect = true;
-                    else
-                        connect = false;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    connect = false;
-                }
+        try {
+            if (Singleton.getInstance().connect(ipPort.get(0), Integer.parseInt(ipPort.get(1)))) {
+                Thread.sleep(2000);
+                connect = true;
             }
-        }.start();
+            else
+            {
+                connect = false;
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            connect = false;
+        }
 
         return connect;
     }
@@ -54,9 +52,14 @@ public class ConnectionProgress extends AsyncTask<String, Void, Boolean> {
         super.onPostExecute(bool);
         progressBarConnect.setVisibility(View.INVISIBLE);
 
-        if (!connect)
+        if (!connect) {
             Toast.makeText(context, "Não foi possível estabelecer uma conexão!", Toast.LENGTH_SHORT).show();
-        else
+        }
+        else {
             Toast.makeText(context, "Conexão estabelecida com sucesso!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, Main2Activity.class);
+            context.startActivity(intent);
+            context.finish();
+        }
     }
 }

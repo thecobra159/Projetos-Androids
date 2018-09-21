@@ -8,13 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
     private ListView listMini;
     private Button btnUp, btnDown;
-    private ArrayAdapter adapter;
-    private List values;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> values;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +25,10 @@ public class Main2Activity extends AppCompatActivity {
         btnUp = findViewById(R.id.btnUpload);
         btnDown = findViewById(R.id.btnDownload);
 
-        try {
-            values = null;
-            adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, values);
-            listMini.setAdapter(adapter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        values = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
+        listMini.setAdapter(adapter);
+
 
         btnUp.setOnClickListener(new View.OnClickListener() {
             @Override
