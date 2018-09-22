@@ -49,7 +49,5 @@ public class UploadTask extends AsyncTask<String, Void, Bitmap> {
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
         progressBar.setVisibility(View.INVISIBLE);
-        if(bitmap != null)
-            imageView.setImageBitmap(bitmap);
     }
 }
