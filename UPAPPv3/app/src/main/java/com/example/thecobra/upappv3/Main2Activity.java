@@ -20,6 +20,7 @@ public class Main2Activity extends AppCompatActivity {
     private Button btnUp, btnDown;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> values;
+    private final Activity activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class Main2Activity extends AppCompatActivity {
         btnDown = findViewById(com.example.thecobra.upappv3.R.id.btnDownload);
 
         values = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, values);
         listMini.setAdapter(adapter);
 
 
@@ -46,10 +47,12 @@ public class Main2Activity extends AppCompatActivity {
         btnDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IntentIntegrator intent = new IntentIntegrator((Activity) getApplicationContext());
+                IntentIntegrator intent = new IntentIntegrator(activity);
                 intent.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                intent.setPrompt("C�mera Scan");
+                intent.setPrompt("Câmera Scan");
                 intent.setCameraId(0);
+                intent.setBeepEnabled(true);
+                intent.setBarcodeImageEnabled(false);
                 intent.initiateScan();
             }
         });
@@ -62,7 +65,7 @@ public class Main2Activity extends AppCompatActivity {
 
         if (result != null){
             if (result.getContents() != null){
-
+                alert(result.getBarcodeImagePath());
             } else {
                 alert("Scan cancelado!");
             }
