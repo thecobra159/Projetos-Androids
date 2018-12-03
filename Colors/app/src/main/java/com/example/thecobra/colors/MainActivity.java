@@ -1,5 +1,6 @@
 package com.example.thecobra.colors;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private View view;
     private Button btnGo;
     private final String URL = "http://nce.up.edu.br/juca/colors.json";
-    private JSONArray jsonArray;
+    private JSONArray jsonArray, arrayFord, arrayBMW, arrayFiat;
+    private JSONObject jsonObject, objFord, objBMW, objFiat;
     private List<Color> colors;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +44,66 @@ public class MainActivity extends AppCompatActivity {
         view = findViewById(R.id.view);
         btnGo = findViewById(R.id.btnGo);
 
+        try {
+            jsonObject = new JSONObject();
+            jsonArray = new JSONArray();
+
+            objFord = new JSONObject();
+            objBMW = new JSONObject();
+            objFiat = new JSONObject();
+
+            arrayFord = new JSONArray();
+            arrayFord.put("Fiesta");
+            arrayFord.put("Focus");
+            arrayFord.put("Mustang");
+            objFord.put("name", "Ford").put("models", arrayFord);
+
+            arrayBMW = new JSONArray();
+            arrayBMW.put("320");
+            arrayBMW.put("X2");
+            arrayBMW.put("X5");
+            objBMW.put("name", "BMW").put("models", arrayBMW);
+
+            arrayFiat = new JSONArray();
+            arrayFiat.put("500");
+            arrayFiat.put("Panda");
+            objFiat.put("name", "Fiat").put("models", arrayFiat);
+
+            jsonArray.put(objFord);
+            jsonArray.put(objBMW);
+            jsonArray.put(objFiat);
+
+            jsonObject.put("name", "John");
+            jsonObject.put("age", 30);
+            jsonObject.put("cars", jsonArray);
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+
+        view.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        /*String myObj = "{
+                /"name/"/:/"John",
+                "age":30,
+                "cars": [
+        { "name":"Ford", "models":[ "Fiesta", "Focus", "Mustang" ] },
+        { "name":"BMW", "models":[ "320", "X3", "X5" ] },
+        { "name":"Fiat", "models":[ "500", "Panda" ] }
+    ]
+ }"*/
+
+
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AndroidNetworking.get(URL)
+
+                if(jsonObject!= null){
+                    view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    textView.setText(jsonObject.toString());
+
+                } else {
+                    view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                }
+                /*AndroidNetworking.get(URL)
                         .setPriority(Priority.MEDIUM)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
@@ -90,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(colors != null){
                     txtColor.setText(colors.get(0).toString());
-                }
+                }*/
             }
         });
     }
