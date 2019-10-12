@@ -1,3 +1,3 @@
 # Projetos-Android
 
-Projetos do curso de Android do Udemy.
+Projetos do curso de Android do Udemy e trabalhos de faculdade.
